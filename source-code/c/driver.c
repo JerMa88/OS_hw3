@@ -25,9 +25,19 @@ int main(int argc, char *argv[])
     char *name;
     int priority;
     int burst;
+    
+    if (argc != 2) {
+        fprintf(stderr, "Usage: %s <input_file>\n", argv[0]);
+        return 100;
+    }
 
     in = fopen(argv[1],"r");
     
+    if (in == NULL) {
+        perror("Error opening file");
+        return 100;
+    }
+
     while (fgets(task,SIZE,in) != NULL) {
         temp = strdup(task);
         name = strsep(&temp,",");

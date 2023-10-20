@@ -5,19 +5,11 @@
 #include "list.h"
 
 void schedule() {
-    printf("Scheduling FCFS...\n");
-    if (taskList != NULL) {
-        traverse(taskList);
+
+    struct node *temp = taskList;
+    while (temp) {
+        run(temp->task, temp->task->burst);
+        temp = temp->next;
     }
-    printf("FCFS scheduling complete.\n");
-    delete(&taskList, taskList->task);
-
-
-    // struct node *temp;
-    // temp = head;
-
-    // while (temp != NULL) {
-    //     run(temp->task, temp->task->burst);
-    //     temp = temp->next;
-    // }
+    // delete(&taskList, taskList->task);
 }

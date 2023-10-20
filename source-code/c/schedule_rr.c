@@ -1,20 +1,18 @@
-#include <stdio.h>
 #include "schedulers.h"
+#include "list.h"
 #include "task.h"
 #include "cpu.h"
-#include "list.h"
 
 void schedule() {
-    int quantum = QUANTUM;
-    while (taskList != NULL) {
+    while (taskList) {
         struct node *temp = taskList;
-        while (temp != NULL) {
-            if (temp->task->burst <= quantum) {
+        while (temp) {
+            if (temp->task->burst <= QUANTUM) {
                 run(temp->task, temp->task->burst);
                 delete(&taskList, temp->task);
             } else {
-                run(temp->task, quantum);
-                temp->task->burst -= quantum;
+                run(temp->task, QUANTUM);
+                temp->task->burst -= QUANTUM;
             }
             temp = temp->next;
         }

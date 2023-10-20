@@ -11,14 +11,32 @@
 
 
 // add a new task to the list of tasks
+// void insert(struct node **head, Task *newTask) {
+//     // add the new task to the list 
+//     struct node *newNode = malloc(sizeof(struct node));
+
+//     newNode->task = newTask;
+//     newNode->next = *head;
+//     *head = newNode;
+// }
+// add a new task to the list of tasks, but in FCFS sequence
 void insert(struct node **head, Task *newTask) {
-    // add the new task to the list 
     struct node *newNode = malloc(sizeof(struct node));
 
     newNode->task = newTask;
-    newNode->next = *head;
-    *head = newNode;
+    newNode->next = NULL;
+
+    if (*head == NULL) {
+        *head = newNode; // if the list is empty, new node is the head
+    } else {
+        struct node *temp = *head;
+        while (temp->next != NULL) { // traverse to the end of the list
+            temp = temp->next;
+        }
+        temp->next = newNode; // insert the new node at the end
+    }
 }
+
 
 // delete the selected task from the list
 void delete(struct node **head, Task *task) {
