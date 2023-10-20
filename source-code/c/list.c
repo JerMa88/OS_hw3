@@ -9,16 +9,6 @@
 #include "list.h"
 #include "task.h"
 
-
-// add a new task to the list of tasks
-// void insert(struct node **head, Task *newTask) {
-//     // add the new task to the list 
-//     struct node *newNode = malloc(sizeof(struct node));
-
-//     newNode->task = newTask;
-//     newNode->next = *head;
-//     *head = newNode;
-// }
 // add a new task to the list of tasks, but in FCFS sequence
 void insert(struct node **head, Task *newTask) {
     struct node *newNode = malloc(sizeof(struct node));
